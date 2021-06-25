@@ -1,0 +1,13 @@
+@import './style/index.scss';
+@import './components/moleculas/Input.scss';
+@import './components/moleculas/Button.scss';
+@import './components/moleculas/Ancor.scss';
+@import './components/organismos/SearchRecipes.scss';
+@import './components/templades/AuthenticationTemplade.scss';
+
+@font-face {
+  font-family: "FuturaNowHeadline-Bd";
+  src: local("FuturaNowHeadline-Bd"),
+    url("./assets/fonts/FuturaNow/FuturaNowHeadline-Bd.ttf") format("truetype");
+  font-weight: normal;
+}
