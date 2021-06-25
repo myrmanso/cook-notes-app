@@ -1,0 +1,52 @@
+@import '../organismos/FormAuthentication.scss';
+
+.auth {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &__aside {
+    width: 50vw;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__container {
+    width: 30vw;
+    border-radius: $measure-2;
+    margin: 0 auto;
+    padding: $measure-5;
+    background-color: $white;
+  }
+
+  &__logo {
+    text-align: center;
+
+    img {
+      width: 200px;
+    }
+
+    &--title {
+      font-size: $h2;
+      color: $orange;
+      font-family: "FuturaNowHeadline-Bd";
+    }
+  }
+
+  &__ancor {
+    &--container {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    &--link {
+      padding: $measure-2 $measure-4;
+      border-radius: $measure-5;
+      background-color: #839b6c;
+      color: $white;
+    }
+  }
+}
