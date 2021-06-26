@@ -1,0 +1,21 @@
+.input {
+  background-color: $gray-100;
+  color: $gray-300;
+  font-size: $h5;
+  padding: $measure-2;
+  border: unset;
+  border-radius: 30px;
+  
+  &:focus-visible {
+    box-shadow: 0 0 0 2px rgba(0, 132, 255, 0.425);
+    outline: 0;
+    border-radius: 30px;
+  }
+
+  &--error {
+    color: $red-100;
+    font-size: $h7;
+    margin: $measure-1;
+    margin-left: $measure-3;
+  }
+}

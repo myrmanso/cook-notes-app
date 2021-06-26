@@ -1,0 +1,13 @@
+.button {
+  border: none;
+  font-size: $h5;
+  padding: $measure-3 $measure-5;
+  border-radius: $measure-5;
+  background-color: $orange;
+  color: $white;
+  font-weight: 700;
+   &:hover {
+    cursor: pointer;
+    background-color: $green-gray;
+   }
+}
