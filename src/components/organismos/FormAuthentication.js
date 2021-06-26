@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import Input from '../moleculas/Input';
 import Button from '../moleculas/Button';
 
-const formSchema = Yup.object().shape({
+const defaultFormSchema = {
   email: Yup.string()
     .trim()
     .email('Formato inválido')
@@ -15,28 +15,57 @@ const formSchema = Yup.object().shape({
     .min(6, 'Mínimo de 6 caracteres')
     .max(100, 'Máximo de 100 caracteres')
     .required('Campo obrigatório'),
+}
+
+const formSchemaLogin = Yup.object().shape({
+  ...defaultFormSchema,
+  name: Yup.string()
+    .trim()
+    .min(3, 'Mínimo de 3 caracteres')
+    .max(100, 'Máximo de 100 caracteres'),
+});
+
+const formSchemaSingup = Yup.object().shape({
+  ...defaultFormSchema,
 });
 
 
-const FormAuthentication = ({ handleLoginUser, buttonLabel }) => {
-
+const FormAuthentication = ({ handleLoginUser, buttonLabel, isLogin }) => {
   const formik = useFormik({
     initialValues: {
       email: '',
       senha: '',
+      name: '',
     },
     onSubmit: (values) => {
       handleLoginUser(values);
     },
-    validationSchema: formSchema,
+    validationSchema: isLogin ? formSchemaLogin : formSchemaSingup,
   });
 
   return (
     <form onSubmit={formik.handleSubmit} className="form-auth">
+      {isLogin && (
+        <div className="form-auth__container">
+          <label className="form-auth__label">
+            name
+          </label>
+          <Input
+            name="name"
+            onChange={formik.handleChange}
+            className={`form-auth__input ${formik.errors.name && 'error'}`}
+            placeholder=""
+            type="text"
+            value={formik.values.name}
+            onBLur={formik.handleBlur}
+            error={formik.errors.name}
+          />
+        </div>
+      )}
       <div className="form-auth__container">
         <label className="form-auth__label">
           e-mail
-      </label>
+        </label>
         <Input
           name="email"
           onChange={formik.handleChange}
