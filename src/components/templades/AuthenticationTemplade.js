@@ -20,7 +20,7 @@ const AuthenticationTemplade = ({ handleLoginUser, isLogin }) => {
           <img src={LogoIcon} alt="" />
           <h1 className="auth__logo--title">Cook Notes</h1>
         </section>
-        <FormAuthentication handleLoginUser={handleLoginUser} buttonLabel={buttonLabel} />
+        <FormAuthentication handleLoginUser={handleLoginUser} buttonLabel={buttonLabel} isLogin={isLogin} />
 
         <div className="auth__ancor--container">
           <Ancor className="auth__ancor--link" href={href}>
