@@ -3,4 +3,9 @@
   border: none;
   font-size: $h5;
   font-weight: 700;
+
+  &:hover {
+    color: white;
+    background-color: $green-gray;
+  }
 }
