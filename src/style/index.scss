@@ -1,0 +1,11 @@
+@import './variables';
+@import './mixins';
+@import './extend';
+@import './base';
+
+@font-face {
+  font-family: "FuturaNowHeadline-Bd";
+  src: local("FuturaNowHeadline-Bd"),
+    url("../assets/fonts/FuturaNow/FuturaNowHeadline-Bd.ttf") format("truetype");
+  font-weight: normal;
+}

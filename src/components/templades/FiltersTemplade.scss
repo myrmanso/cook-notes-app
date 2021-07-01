@@ -1,0 +1,16 @@
+.filter-templade {
+  @include flex(center, space-between);
+  flex-direction: row;
+  text-align: left;
+  padding-top: $measure-5;
+
+  &__container {
+   margin-right: $measure-4;
+   min-width: 190px;
+   max-width: fit-content;
+
+   p {
+     font-weight: 700;
+   }
+  }
+}

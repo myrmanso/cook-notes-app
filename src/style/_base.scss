@@ -1,0 +1,16 @@
+*{
+  box-sizing: border-box;
+  font-family: $font;
+  color: $black;
+  margin: 0;
+
+  a {
+    color: $black;
+  }
+}
+
+.recipes-page {
+  width: 90vw;
+  margin: 0 auto;
+  padding-top: 24px;
+}

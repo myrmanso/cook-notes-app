@@ -1,0 +1,13 @@
+@import '~antd/dist/antd.css';
+@import '../components/organismos/SearchRecipes.scss';
+@import '../components/templades/Navbar.scss';
+@import '../components/templades/FiltersTemplade.scss';
+@import '../components/organismos/CardRecipe.scss';
+
+.recipes-page {
+  &__cards--containers {
+    margin-top: 100px;
+    width: 100%;
+    @extend %grid-c-6;
+  }
+}

@@ -1,0 +1,35 @@
+.navbar {
+  &__navigation {
+    @include flex(center, space-between);
+
+    &__ancor-logo {
+      &:hover {
+        background-color: unset;
+      }
+    }
+
+    &__link-to-page {
+      color: $orange;
+      padding: $measure-3 $measure-5;
+      border-radius: $measure-5;
+      background-color: $white;
+
+      &:hover {
+        color: $white;
+        background-color: $green-water;
+      }
+    }
+
+    &__user-icon {
+    border: 2px solid $orange;
+    border-radius: 100%;
+    padding: $measure-1 $measure-2;
+    }
+
+    &__plus-icon {
+      &:hover {
+        background-color: unset;
+      }
+    }
+  }
+}

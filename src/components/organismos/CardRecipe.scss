@@ -1,0 +1,19 @@
+.card-recipes {
+  &__title {
+    font-size: 13px;
+  }
+
+  &__button {
+    text-align: end;
+    margin-top: $measure-3;
+
+    button {
+    padding: 8px;
+    font-size: 13px;
+
+    :hover {
+      background-color: unset;
+    }
+  }
+  }
+}

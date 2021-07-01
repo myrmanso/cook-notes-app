@@ -1,0 +1,1 @@
+export const filterById = (array, id) => array.filter(element => element.id === id);

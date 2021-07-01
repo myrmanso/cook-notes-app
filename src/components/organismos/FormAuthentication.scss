@@ -1,0 +1,22 @@
+.form-auth {
+   &__container {
+    display: flex;
+    flex-direction: column;
+    margin: $measure-5 0;
+
+    &--button {
+      text-align: center;
+    }
+   }
+
+   &__label {
+      text-transform:capitalize;
+       margin-bottom: $measure-2;
+       margin-left: $measure-2;
+   }
+
+   &__button {
+      margin: $measure-3 0;
+      padding: $measure-2 48px;
+   }
+}
