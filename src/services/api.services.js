@@ -18,7 +18,11 @@ class ApiService {
     );
 
     this.api.interceptors.response.use(
-      config => config,
+      config => {
+        config.headers['Access-Control-Allow-Origin'] = '*';
+
+        return config;
+      },
       error => {
         if (error.response.status === 401 && error.response.data.type === 'Auth') {
           localStorage.removeItem('token');
