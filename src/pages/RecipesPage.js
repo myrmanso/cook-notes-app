@@ -67,6 +67,6 @@ class RecipesPage extends React.Component {
       </section>
     );
   }
-};
+}
 
 export default RecipesPage;
