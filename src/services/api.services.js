@@ -8,6 +8,12 @@ class ApiService {
 
     this.api.interceptors.request.use(
       config => {
+        config.headers = {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true'
+        };
+
         if (config.url.includes('/auth')) {
           return config;
         }
