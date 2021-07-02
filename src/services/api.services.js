@@ -8,12 +8,6 @@ class ApiService {
 
     this.api.interceptors.request.use(
       config => {
-        config.headers = {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Credentials': 'true'
-        };
-
         if (config.url.includes('/auth')) {
           return config;
         }
@@ -24,11 +18,7 @@ class ApiService {
     );
 
     this.api.interceptors.response.use(
-      config => {
-        config.headers['Access-Control-Allow-Origin'] = '*';
-
-        return config;
-      },
+      config => config,
       error => {
         if (error.response.status === 401 && error.response.data.type === 'Auth') {
           localStorage.removeItem('token');
