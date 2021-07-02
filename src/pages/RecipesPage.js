@@ -40,9 +40,8 @@ class RecipesPage extends React.Component {
 
   addRecipe = async (recipeId) => {
     try {
-      const response = await apiService.addRecipe(recipeId)
+      await apiService.addRecipe(recipeId)
 
-      console.log(response)
     } catch (error) {
       console.log(error)
     }

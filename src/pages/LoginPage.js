@@ -6,7 +6,6 @@ import apiService from '../services/api.services';
 const LoginPage = (props) => {
   const handleLoginUser = async values => {
     const { email, password } = values;
-    console.log(values);
     try {
       const { result, message } = await apiService.loginUser({ email, password });
 

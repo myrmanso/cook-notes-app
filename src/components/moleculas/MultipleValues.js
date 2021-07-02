@@ -24,8 +24,6 @@ const MultipleValues = ({ stateUpdateValue, updateFilter, filters }) => {
   const [values, setValues] = useState([stateUpdateValue])
 
   const onChange = value => {
-    console.log('onChange ', value);
-
     updateFilter(value);
     setValues(value);
   };
