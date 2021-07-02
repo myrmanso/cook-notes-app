@@ -1,19 +1,45 @@
 .card-recipes {
-  &__title {
-    font-size: 13px;
+  width: 100%;
+  margin: 0 auto;
+  padding: $measure-3;
+
+  &__content {
+    @include flex(center);    
+    flex-direction: column;
+
+    &__title {
+      font-size: 13px;
+      width: 200px;
+    }
   }
+
 
   &__button {
     text-align: end;
-    margin-top: $measure-3;
+    margin: $measure-3 auto;
+    width: 200px;
+    @include flex(center, space-between);
 
     button {
-    padding: 8px;
-    font-size: 13px;
+      font-size: 13px;
+      padding: $measure-2;
 
-    :hover {
-      background-color: unset;
+      :hover {
+        background-color: unset;
+      }
     }
-  }
+
+    &__ancor {
+      font-size: 13px;
+      color: $orange;
+      padding: $measure-2;
+      border-radius: $measure-5;
+      background-color: $white;
+
+      &:hover {
+        color: $white;
+        background-color: $green-water;
+      }
+    }
   }
 }
