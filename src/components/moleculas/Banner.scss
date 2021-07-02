@@ -1,0 +1,13 @@
+.banner {
+  width: 60vw;
+    margin: $measure-5 auto;
+    background-color: $green-water;
+    padding: $measure-3;
+    border-radius: $measure-2;
+
+  &__text {
+    margin: 0;
+    font-weight: bold;
+    color: $orange;
+  }
+}
