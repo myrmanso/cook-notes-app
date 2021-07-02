@@ -10,7 +10,7 @@ const defaultFormSchema = {
     .trim()
     .email('Formato inválido')
     .required('Campo obrigatório'),
-  senha: Yup.string()
+  password: Yup.string()
     .trim()
     .min(6, 'Mínimo de 6 caracteres')
     .max(100, 'Máximo de 100 caracteres')
@@ -33,9 +33,9 @@ const formSchemaSingup = Yup.object().shape({
 const FormAuthentication = ({ handleLoginUser, buttonLabel, isLogin }) => {
   const formik = useFormik({
     initialValues: {
-      email: '',
-      senha: '',
       name: '',
+      email: '',
+      password: '',
     },
     onSubmit: (values) => {
       handleLoginUser(values);
@@ -82,14 +82,14 @@ const FormAuthentication = ({ handleLoginUser, buttonLabel, isLogin }) => {
           senha
       </label>
         <Input
-          name="senha"
+          name="password"
           onChange={formik.handleChange}
           className={`form-auth__input ${formik.errors.email && 'error'}`}
           placeholder=""
           type="password"
-          value={formik.values.senha}
+          value={formik.values.password}
           onBLur={formik.handleBlur}
-          error={formik.errors.senha}
+          error={formik.errors.password}
         />
       </div>
       <div className="form-auth__container--button">
