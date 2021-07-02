@@ -6,13 +6,8 @@ import Navbar from '../components/templades/Navbar';
 import CardRecipe from '../components/organismos/CardRecipe';
 class RecipesPage extends React.Component {
   constructor(props) {
-    super()
+    super(props)
     this.state = {
-      meals: 'Todos',
-      flavor: 'Todos',
-      cost: 'Todos',
-      level: 'Todos',
-      occasion: 'Todos',
       recipes: [],
       availableFilters: [],
     }
@@ -20,7 +15,7 @@ class RecipesPage extends React.Component {
 
   getRecipes = async () => {
     const response = await apiService.getAllRecipes();
-    console.log({ response })
+
     this.setState({ recipes: response.recipes, availableFilters: response.availableFilters })
   };
 
@@ -31,6 +26,11 @@ class RecipesPage extends React.Component {
 
   handleSearch = async (values) => {
     const { name } = values;
+
+    if (!name) {
+      return this.getRecipes();
+    }
+
     const response = await apiService.getRecipeByName(name);
 
     this.setState({ recipes: response.recipes })
@@ -38,17 +38,30 @@ class RecipesPage extends React.Component {
 
   handleFilter = (values) => this.setState({ ...values });
 
-  addRecipe = (id) => console.log(id);
+  addRecipe = async (recipeId) => {
+    try {
+      const response = await apiService.addRecipe(recipeId)
+
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   render() {
     const { recipes } = this.state;
     return (
       <section className="recipes-page">
-        <Navbar handleSearch={this.handleSearch} showSearch />
+        <Navbar handleSearch={this.handleSearch} history={this.props.history} showSearch />
 
         <section className="recipes-page__cards--containers">
           {recipes.map(recipe => (
-            < CardRecipe url={recipe.externalLink} title={recipe.recipeName} addRecipe={() => this.addRecipe(recipe.recipeId)} />
+            <CardRecipe
+              key={recipe.recipeId}
+              url={recipe.externalLink}
+              title={recipe.recipeName}
+              addRecipe={() => this.addRecipe(recipe.recipeId)}
+            />
           ))}
         </section>
       </section>
