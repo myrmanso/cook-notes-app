@@ -5,6 +5,29 @@ class ApiService {
     this.api = axios.create({
       baseURL: process.env.REACT_APP_PROJECTS_API_URL,
     })
+
+    this.api.interceptors.request.use(
+      config => {
+        if (config.url.includes('/auth')) {
+          return config;
+        }
+        config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+
+        return config;
+      },
+    );
+
+    this.api.interceptors.response.use(
+      config => config,
+      error => {
+        if (error.response.status === 401 && error.response.data.type === 'Auth') {
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+        }
+
+        return error;
+      }
+    );
   }
 
   getAllRecipes = async () => {
@@ -13,29 +36,91 @@ class ApiService {
 
       return result;
     } catch (error) {
-      console.log(error)
+      console.log('getAllRecipes', error)
     }
   }
-  // getAllRecipes = () => {
-  //   this.api.get('/recipes')
-  //     .then((response) => response)
-  //     .catch((erro) => console.log(erro))
-  // }
+
+  getAllUserRecipes = async () => {
+    const userId = localStorage.getItem('result');
+
+    try {
+      const result = (await this.api.get(`/user/${userId}/recipes`)).data;
+
+      return result;
+    } catch (error) {
+      console.log('getAllUserRecipes', error)
+    }
+  }
+
+  getRecipeByNameAndUserId = async (name) => {
+    const userId = localStorage.getItem('result');
+
+    try {
+      const result = (await this.api.get(`/user/recipes/search?name=${name}&userId=${userId}`)).data;
+
+      return result;
+    } catch (error) {
+      console.log('getRecipeByNameAndUserId', error)
+    }
+  }
+
+  getRecipeById = async (recipeId) => {
+    try {
+      const result = (await this.api.get(`/recipe/${recipeId}`)).data;
+
+      return result;
+    } catch (error) {
+      console.log('getRecipeById', error)
+    }
+  }
 
   getRecipeByName = async (name) => (await this.api.get(`/recipes/name/${name}`)).data;
 
   postCreateRecipe = async (data) => {
+    const userId = localStorage.getItem('result');
+
     try {
-      const response = await this.api.post('/recipe', { ...data, userCreator: '60cd6ad650cb80f790be92e9' });
+      const response = await this.api.post('/recipe', { ...data, userCreator: userId });
 
       return response;
     } catch (error) {
-      console.log(error)
+      console.log('postCreateRecipe', error)
     }
   }
-  // getFilterRecipes = async (params) => {
-  //   return (await (this.api.get('/recipes/search', { ...params }))).data;
-  // }
+
+  addRecipe = async (recipeId) => {
+    const userId = localStorage.getItem('result');
+
+    try {
+      const response = await this.api.patch(`/user/${userId}/recipe/${recipeId}`);
+
+      return response;
+    } catch (error) {
+      console.log('addRecipe', error)
+    }
+  }
+
+  updateRecipe = async (data, recipeId) => {
+    try {
+      const response = await this.api.patch(`/recipe/${recipeId}`, data);
+
+      return response;
+    } catch (error) {
+      console.log('updateRecipe', error)
+    }
+  }
+
+  signupUser = async userData => {
+    const { data } = await this.api.post('/auth/signup', userData);
+
+    return data;
+  }
+
+  loginUser = async userData => {
+    const { data } = await this.api.post('/auth/login', userData);
+
+    return data;
+  }
 }
 
 export default new ApiService();
